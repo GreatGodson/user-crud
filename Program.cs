@@ -62,11 +62,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 WebApplication app = builder.Build();
 
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     _ = app.UseSwagger();
     _ = app.UseSwaggerUI();
